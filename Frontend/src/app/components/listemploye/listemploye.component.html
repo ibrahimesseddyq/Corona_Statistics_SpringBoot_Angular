@@ -1,0 +1,39 @@
+<div class="container table-responsive contacts list-contacts">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom et Prenom</th>
+                <th>Adresse</th>
+                <th>Date d'embauche</th>
+                <th>Télephone</th>
+                <th>Status</th>
+                <th>sexe</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of Employees">
+                <td>
+                    <div class="user-info d-flex align-items-center">
+                        <div class="user-info__img">
+                            <img class="me-3" src="../../../assets/img/avatar (1).svg" alt="User Img" width="55">
+                        </div>
+                        <div class="user-info__basic">
+                            <h5 class="mb-0">{{user.fullname}}</h5>
+                        </div>
+                    </div>
+                </td>
+                <td>{{user.Adresse}}</td>
+                <td>{{user.dateofjoin}}</td>
+                <td>{{user.phone}}</td>
+                <td>
+                    <span class="btn btn-success btn-sm">active</span>
+                    <!-- <span class="btn btn-danger btn-sm">Desactive</span> -->
+                </td>
+                <td>{{user.sexe}}</td>
+                <td><a class=" btn text-white bg-success btn-sm">Update</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,25 @@
+<div class="row justify-content-between align-items-center container mt-5">
+    <div class="col-lg-6">
+        <h3>Bienvenue Dans la societé</h3>
+        <p class="mt-5">information sur le societe Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure ipsam adipisci culpa cumque</p>
+    </div>
+    <div class="col-lg-5">
+      <h4 class="text-center">Se Connecter</h4>
+        <form #form="ngForm" (ngSubmit)="login(form)">
+          <p class="alert alert-danger text-danger d-none text-center" id="error">username or password not correct</p>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">UserName</label>
+              <input #username="ngModel" name="username" ngModel type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input #password="ngModel" name="password" ngModel type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Se Connecter</button>
+          </form>
+    </div>
+</div>
