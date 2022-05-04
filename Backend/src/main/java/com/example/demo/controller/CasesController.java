@@ -30,6 +30,15 @@ public class CasesController {
     public ResponseEntity<List<Country>> GetCountries(){
         return ResponseEntity.ok().body(coronaServices.loadAllCountries());
     }
+    @GetMapping("/{year}/{month}")
+    public ResponseEntity<List<Cases>> GetCasesDate(@PathVariable("year") long year, @PathVariable("month") long month){
+        return ResponseEntity.ok().body(coronaServices.loadCaseDate(month,year));
+    }
+    @GetMapping("/bycountry/{country}")
+    public ResponseEntity<List<Cases>> GetCasesCountry(@PathVariable("country") String country){
+        return ResponseEntity.ok().body(coronaServices.loadCaseCountry(country));
+    }
+
 
 
 }
