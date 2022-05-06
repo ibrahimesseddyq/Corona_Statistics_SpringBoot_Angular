@@ -21,11 +21,12 @@ import java.util.List;
 public class CasesController {
     @Autowired
     private final CoronaServices coronaServices;
-
+// /api/cases+/  [Get]
     @GetMapping("/")
     public ResponseEntity<List<Cases>> GetCases(){
         return ResponseEntity.ok().body(coronaServices.loadAllData());
     }
+   // /api/cases + /countries [Get]
     @GetMapping("/countries")
     public ResponseEntity<List<Country>> GetCountries(){
         return ResponseEntity.ok().body(coronaServices.loadAllCountries());

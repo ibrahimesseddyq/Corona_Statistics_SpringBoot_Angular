@@ -19,9 +19,11 @@ import java.util.List;
 public class UsersController {
 
     @Autowired
+
     private final UserServiceImpl userService;
     //creating a get mapping that retrieves all the users detail from the database
     @GetMapping("/")
+    ///api/users + /
     public ResponseEntity<List<AppUser>> GetUsers(){
         return ResponseEntity.ok().body(userService.getAllUsers());
     }
@@ -31,6 +33,8 @@ public class UsersController {
         return ResponseEntity.ok().body(userService.getUserById(userId));
 
     }
+    // /api/users + /save [Post] lmohim lbghiti t2kd mn chi api wakha normalement gykono lkhrin kamlin s7a7
+    // gha hdik li iha prob ok? ok sf gnmchi nzid dok lerd columns lkhrin bech y9blhom donc nta li3ndk probleme ?? hhh
 @PostMapping("/save")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser user){
     URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/users/save").toUriString());
