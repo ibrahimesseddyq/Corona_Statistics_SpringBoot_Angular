@@ -12,8 +12,9 @@ import { AddemployeComponent } from './components/addemploye/addemploye.componen
 import { ListemployeComponent } from './components/listemploye/listemploye.component';
 import { ProfileAdminComponent } from './components/profile-admin/profile-admin.component';
 import { JwtModule } from '@auth0/angular-jwt';
-import { DashboardemployerComponent } from './components/dashboardemployer/dashboardemployer.component'; 
-
+import { DashboardemployerComponent } from './components/dashboardemployer/dashboardemployer.component';
+import { NgxChartComponent } from './components/ngx-chart/ngx-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,17 +25,19 @@ import { DashboardemployerComponent } from './components/dashboardemployer/dashb
     AddemployeComponent,
     ListemployeComponent,
     ProfileAdminComponent,
-    DashboardemployerComponent
+    DashboardemployerComponent,
+    NgxChartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgxChartsModule,
     RouterModule.forRoot([
       { path: '' , component:LoginPageComponent  },
       { path: 'disable', component:CompteDisableComponent },
       { path: 'dashboardadmin', component:DashboardadminComponent },
-      { path: 'dashboardemployer', component:DashboardemployerComponent }
+      { path: 'dashboardemployer', component:DashboardemployerComponent },
     ])
   ],
   providers: [],

@@ -22,4 +22,12 @@ export class LoginService {
       return this.http.post("http://localhost:8080/login",body.toString(),options);
 
    }
+
+   getUser(){
+    return this.http.get("http://localhost:8080/api/users/username/{sa}");
+   }
+
+  //  getUserUsername(username){
+  //    this.http.get("http://localhost:8080/api/users/username/"+username);
+  //  }
 }

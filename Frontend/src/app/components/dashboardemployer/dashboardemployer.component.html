@@ -1,1 +1,95 @@
-<p>dashboardemployer works!</p>
+<main class="d-flex flex-column justify-content-center align-items-center">
+    <div>
+     <div class="link mt-5">
+         <ul class="d-flex gap-4 list-unstyled">
+             <li><a routerLink="dashboard/listemploye" class="btn btn-primary btn-nav" >Your Profile</a></li>
+             <div class="button-add-student">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Generer graph</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Generer graph</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form #addForm="ngForm"  class="d-flex flex-column gap-3">
+                            <div class="d-flex gap-2">
+                                <span>Paye</span>
+                                <select name="country" [(ngModel)]="selectedValue" id="">
+                                    <option *ngFor="let country of countries" class="selectCountry" [ngValue]="country.country">
+                                        {{country.country}}
+                                    </option>
+                                </select>
+                            </div>
+                          <div class="d-flex gap-2">
+                              <div class="">
+                                <label for="recipient-name" class="col-form-label">start month</label>
+                                <input type="text" class="form-control" id="recipient-name" name="username" #username="ngModel" ngModel>              </div>
+                              <div class="">
+                                <label for="recipient-name" class="col-form-label">start year</label>
+                                <input type="text" class="form-control" id="recipient-name" name="fullname" #fullname="ngModel" ngModel>
+                              </div>
+                          </div>
+                          <div class="d-flex gap-2">
+                            <div class="">
+                              <label for="recipient-name" class="col-form-label">end month</label>
+                              <input type="text" class="form-control" id="recipient-name" name="Adresse" #Adresse="ngModel" ngModel>
+                            </div>
+                            <div class="">
+                              <label for="recipient-name" class="col-form-label">end year</label>
+                              <input type="text" class="form-control" id="recipient-name" name="dateofjoin" #dateofjoin="ngModel" ngModel>
+                            </div>
+                          </div>
+                          <div class="d-flex gap-2">
+                            
+                          </div>
+                          
+                          <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                      </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <li><button class="btn btn-danger btn-nav" routerLink="" >Logout</button></li>
+         </ul>
+     </div>
+    </div>
+
+    <div class="container table-responsive contacts list-contacts">
+        <select (change)="onchangex(selectedValue)" [(ngModel)]="selectedValue">
+            <option *ngFor="let country of countries" class="selectCountry" [value]="country.country">
+                {{country.country}}
+            </option>
+        </select>
+        <!-- <select name="country" [(ngModel)]="selectedValue" id="">
+            <option *ngFor="let country of countries" class="selectCountry" [ngValue]="country.country">
+                {{country.country}}
+            </option>
+        </select> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>country</th>
+                    <th>date</th>
+                    <th>caseno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let case of table">
+                    <td>{{case.country.country}}</td>
+                    <td>{{case.date.datename}}</td>
+                    <td>{{case.caseno}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <router-outlet></router-outlet> -->
+    
+ </main>
+ <!-- <app-listemploye></app-listemploye> -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -29,9 +29,12 @@ export class LoginPageComponent implements OnInit {
           b = e;
           console.log(b);
           b = jwtDecode(b.access_token);
+          console.log(b);
       },500)
  
     })
+
+
     setTimeout((e:any)=>{
       if(b){
         console.log(b.roles[0]);
@@ -39,7 +42,11 @@ export class LoginPageComponent implements OnInit {
           this.router.navigate(['/dashboardadmin'], { relativeTo: this.route });
         }
         else{
-          this.router.navigate(['/dashboardemployer'], { relativeTo: this.route });
+          this.loginService.getUser().subscribe((e:any)=>{
+            console.log(e);
+          })
+          // console.log(b);
+          // this.router.navigate(['/dashboardemployer'], { relativeTo: this.route });
         }
       }
       else{
