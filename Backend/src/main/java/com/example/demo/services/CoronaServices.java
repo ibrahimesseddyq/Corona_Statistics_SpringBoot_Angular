@@ -41,4 +41,8 @@ public class CoronaServices {
         return casesRepo.findCasesByCountry(country);
 
     }
+    public List<Cases> getGraphData(String country,String start,String end){
+        return  casesRepo.findCasesByCountryAndDateInterval(country,start,end);
+    }
+
 }

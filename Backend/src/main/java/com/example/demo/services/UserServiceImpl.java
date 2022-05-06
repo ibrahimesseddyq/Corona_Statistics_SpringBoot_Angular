@@ -79,6 +79,11 @@ public class UserServiceImpl implements UserDetailsService {
         return  userRepo.deleteAppUserById(id);
 
     }
+    public  AppUser updateUser(AppUser user){
+        AppUser currentUser = userRepo.findAppUserById(user.getId());
+        currentUser.setStatus(user.getStatus());
+        return saveUser(currentUser);
+    }
     public AppUser postUser(AppUser user){
         userRepo.save(user);
         return  user;

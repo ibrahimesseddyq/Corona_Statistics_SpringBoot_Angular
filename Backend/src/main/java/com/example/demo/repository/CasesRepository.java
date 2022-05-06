@@ -15,4 +15,6 @@ public interface CasesRepository extends JpaRepository<Cases,Long> {
     List<Cases> findCasesByDate(long month,long year);
     @Query(value = "SELECT * from cases INNER JOIN date ON cases.date_id = date.date_id  INNER JOIN country ON cases.country_id=country.country_id WHERE country.country=?1", nativeQuery = true)
     List<Cases> findCasesByCountry(String country);
+    @Query(value = "SELECT * FROM cases as c INNER JOIN date as d ON c.date_id = d.date_id INNER JOIN country as co ON c.country_id=co.country_id WHERE co.country = ?1 AND d.name BETWEEN ?2 AND ?3 ",nativeQuery = true)
+    List<Cases> findCasesByCountryAndDateInterval(String country,String startDate,String endDate);
 }

@@ -29,11 +29,9 @@ services:
 
   #service 3: definition of your spring-boot app
   customerservice:                        #it is just a name, which will be used only in this file.
-    image: gs-spring-boot-docker    #name of the image after dockerfile executes
+    image: ibrahim0123456789/gs-spring-boot-docker    #name of the image after dockerfile executes
     container_name: backend  #name of the container created from docker image
-    build:
-      context: .                          #docker file path (. means root directory)
-      dockerfile: Dockerfile              #docker file name
+
     ports:
       - "8080:8080"                       #docker containter port with your os port
     restart: always
