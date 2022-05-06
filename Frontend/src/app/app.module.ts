@@ -13,8 +13,6 @@ import { ListemployeComponent } from './components/listemploye/listemploye.compo
 import { ProfileAdminComponent } from './components/profile-admin/profile-admin.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DashboardemployerComponent } from './components/dashboardemployer/dashboardemployer.component';
-import { NgxChartComponent } from './components/ngx-chart/ngx-chart.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,13 +24,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ListemployeComponent,
     ProfileAdminComponent,
     DashboardemployerComponent,
-    NgxChartComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    NgxChartsModule,
     RouterModule.forRoot([
       { path: '' , component:LoginPageComponent  },
       { path: 'disable', component:CompteDisableComponent },

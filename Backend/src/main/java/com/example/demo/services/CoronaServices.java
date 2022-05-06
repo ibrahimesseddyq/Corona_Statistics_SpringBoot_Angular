@@ -33,4 +33,16 @@ public class CoronaServices {
         return countryRepository.findAll();
 
     }
+    public List<Cases> loadCaseDate(long month,long year){
+        return casesRepo.findCasesByDate(month,year);
+
+    }
+    public List<Cases> loadCaseCountry(String country){
+        return casesRepo.findCasesByCountry(country);
+
+    }
+    public List<Cases> getGraphData(String country,String start,String end){
+        return  casesRepo.findCasesByCountryAndDateInterval(country,start,end);
+    }
+
 }

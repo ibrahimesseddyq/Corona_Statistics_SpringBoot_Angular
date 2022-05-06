@@ -3,15 +3,13 @@ package com.example.demo.controller;
 import com.example.demo.model.AppUser;
 import com.example.demo.model.Cases;
 import com.example.demo.model.Country;
+import com.example.demo.model.Graph;
 import com.example.demo.services.CoronaServices;
 import com.example.demo.services.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,12 @@ public class CasesController {
     public ResponseEntity<List<Country>> GetCountries(){
         return ResponseEntity.ok().body(coronaServices.loadAllCountries());
     }
+    @PostMapping("/graph")
+    public ResponseEntity<List<Cases>> GetCasesDate(@RequestBody Graph body){
+        return ResponseEntity.ok().body(coronaServices.getGraphData(body.getCountry(), body.getStartDate(), body.getEndDate()));
+    }
+
+
 
 
 }

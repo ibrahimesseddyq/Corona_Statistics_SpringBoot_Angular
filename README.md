@@ -7,7 +7,7 @@
 ## Get specific user by username:
 [GET] /api/users/username/{username}
 ## Save user:
-[POST] /api/users/
+[POST] /api/users/save
 ## Get roles:
 [GET] /api/users/roles
 ## Save role:
@@ -20,6 +20,10 @@
 [GET] /api/cases
 ## Get Countries infos:
 [GET] /api/cases/countries
+## Get specified Data for ngx Graph
+[POST] /api/cases/graph
+## Update User Status
+[PUT] /api/users/
 
 
 

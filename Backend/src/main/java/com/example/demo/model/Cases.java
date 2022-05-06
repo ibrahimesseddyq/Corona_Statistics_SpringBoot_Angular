@@ -28,4 +28,6 @@ public class Cases {
 
     @Column
     Long caseno;
+    @Column
+    Long deathno;
 }
