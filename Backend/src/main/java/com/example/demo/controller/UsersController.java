@@ -33,16 +33,16 @@ public class UsersController {
         return ResponseEntity.ok().body(userService.getUserById(userId));
 
     }
-<<<<<<< HEAD
+
     // /api/users + /save [Post] lmohim lbghiti t2kd mn chi api wakha normalement gykono lkhrin kamlin s7a7
     // gha hdik li iha prob ok? ok sf gnmchi nzid dok lerd columns lkhrin bech y9blhom donc nta li3ndk probleme ?? hhh
-=======
+
     @GetMapping("username/{username}")
     public ResponseEntity<AppUser> GetUserById(@PathVariable("username") String username){
         return ResponseEntity.ok().body(userService.getUser(username));
 
     }
->>>>>>> 034949079ef23f091c05d2c96cec9bc7a103db3d
+
 @PostMapping("/save")
     public ResponseEntity<AppUser> saveUser(@RequestBody AppUser user){
     URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/users/save").toUriString());
