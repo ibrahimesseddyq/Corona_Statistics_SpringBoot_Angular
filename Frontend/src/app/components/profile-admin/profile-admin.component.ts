@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-profile-admin',
@@ -7,13 +8,11 @@ import { CrudService } from 'src/app/services/crud.service';
   styleUrls: ['./profile-admin.component.css']
 })
 export class ProfileAdminComponent implements OnInit {
-user:any;
-  constructor(private crud:CrudService) { }
+  user:any;
+  constructor(private crud:CrudService,private shared:SharedService) { }
 
   ngOnInit(): void {
-    this.crud.getUserById(16).subscribe(user=>{
-      this.user = user;
-      console.log(user);
-    })
+    this.user = this.shared.getData();
+    this.user = JSON.parse(this.user);
   }
 }

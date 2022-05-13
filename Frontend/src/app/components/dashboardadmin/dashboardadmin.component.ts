@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-dashboardadmin',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboardadmin.component.css']
 })
 export class DashboardadminComponent implements OnInit {
-
-  constructor() { }
+  user:any;
+  constructor(private shared:SharedService) { }
   
   ngOnInit(): void {
+    // this.user = this.shared.getData();
+    // console.log(this.user);
+
   }
 
 }

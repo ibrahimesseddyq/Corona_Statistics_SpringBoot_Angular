@@ -14,11 +14,12 @@ export class CrudService {
   onChangeEvent(item:any){
     this.onchange$.next(item)
   }
+  
   getUsers(){
     return this.http.get("http://localhost:8080/api/users/");
   }
   saveUser(data:any){
-        console.log(data);
+    console.log(data);
     return this.http.post("http://localhost:8080/api/users/save",data);
   } 
 
@@ -37,6 +38,19 @@ export class CrudService {
 
   getUserById(id:any){
     return this.http.get("http://localhost:8080/api/users/" + id);
+  }
+
+  generGraph(data:any){
+    // let data = {"country":country,"startDate":startDate,"endDate":endDate};
+    return this.http.post("http://localhost:8080/api/cases/graph",data);
+  }
+
+  updateUserStatus(idUser:any,status:any){
+    let user = {
+      "id":idUser,
+      "status":status,
+    }
+    return this.http.put("http://localhost:8080/api/users/",user);
   }
 }
 // runni

@@ -28,8 +28,81 @@
                 <td>{{user.dateofjoin}}</td>
                 <td>{{user.phone}}</td>
                 <td >
-                    <span *ngIf="user.status == true" class="btn btn-success btn-sm statu" onclick="changeStatus('active')">active</span>
-                    <span *ngIf="user.status == !true" class="btn btn-danger btn-sm statu" onclick="changeStatus('Desactive')">Desactive</span>
+                    <div class="button-add-student">
+                        <span type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@mdo">
+                                        <span *ngIf="user.status == true" class="btn btn-success btn-sm statu" (click)="changeStatus('active',user.id)">active</span>
+                                        <span *ngIf="user.status == !true" class="btn btn-danger btn-sm statu" (click)="changeStatus('Desactive',user.id)">Desactive</span>
+                        </span>
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">modifier status</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form #updateForm="ngForm" (ngSubmit)="updateStatusUser(updateForm)" class="d-flex flex-column gap-3">
+                                  <div class="d-flex gap-2">
+                                      <div class="">
+                                        <label for="recipient-name" class="col-form-label">nom d'etulisateur</label>
+                                        <input type="text" [disabled]="true" value="{{userInfo.username}}" class="form-control" id="recipient-name">              </div>
+                                      <div class="">
+                                        <label for="recipient-name" class="col-form-label">nom complet</label>
+                                        <input type="text" [disabled]="true" value="{{userInfo.fullname}}" class="form-control disable" id="recipient-name">
+                                      </div>
+                                  </div>
+                                  <div class="d-flex gap-2">
+                                    <div class="">
+                                      <label for="recipient-name" class="col-form-label">Adresse</label>
+                                      <input type="text" [disabled]="true" value="{{user.adresse}}" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="">
+                                      <label for="recipient-name" class="col-form-label">Date d'embauche</label>
+                                      <input type="date" [disabled]="true" value="{{user.dateofjoin}}" class="form-control" id="recipient-name" >
+                                    </div>
+                                  </div>
+                                  <div class="d-flex gap-2">
+                                    <div class="">
+                                      <label for="recipient-name" class="col-form-label">Télephone</label>
+                                      <input type="text" [disabled]="true" value="{{user.phone}}" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="">
+                                      <label for="recipient-name" class="col-form-label">Password</label>
+                                      <input type="password" [disabled]="true" value="{{user.password}}" class="form-control" id="recipient-name" >
+                                    </div>
+                                  </div>
+                                  <div class="d-flex gap-2 justify-content-around">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                      <span>Sexe</span>
+                                      <div class="d-flex gap-3 mt-3">
+                                        <select value="{{user.sexe}}" [disabled]="true">
+                                          <option value="H">H</option>
+                                          <option value="F">F</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                      <span>Status</span>
+                                      <div class="d-flex gap-3 mt-3">
+                                          <span *ngIf="user.status == true">active</span>
+                                          <span *ngIf="user.status == false">desactiver</span>
+                                        <select name="status" #status="ngModel" ngModel>
+                                          <option value="true">Active</option>
+                                          <option value="false">Desavtive</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                                <button type="submit" name="submit" class="btn btn-primary">modifier</button>
+                              </div>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </td>
                 <td>{{user.sexe}}</td>
             </tr>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
+// import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { catchError, pipe } from 'rxjs';
 import jwtDecode from 'jwt-decode';
 import { state } from '@angular/animations';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'src/app/services/shared.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -13,10 +15,12 @@ import { state } from '@angular/animations';
 export class LoginPageComponent implements OnInit {
   route: ActivatedRoute | null | undefined;
 
+  public userName:any;
+  public user:any;
+
   constructor(private http:HttpClient
               ,private router:Router
-              ,private loginService:LoginService) { 
-
+              ,private loginService:LoginService, private shared:SharedService) { 
   }
 
   ngOnInit(): void {
@@ -27,26 +31,31 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(form).subscribe((e:any)=>{
       setTimeout((a:any)=>{
           b = e;
-          console.log(b);
           b = jwtDecode(b.access_token);
-          console.log(b);
-      },500)
- 
+
+          this.userName = b.sub;
+          this.loginService.getUser(this.userName).subscribe((e:any)=>{
+            this.user = e;
+            this.shared.setData(this.user);
+          })
+      },500); 
     })
 
 
     setTimeout((e:any)=>{
       if(b){
-        console.log(b.roles[0]);
         if(b.roles[0] == "ADMIN"){
           this.router.navigate(['/dashboardadmin'], { relativeTo: this.route });
         }
         else{
-          this.loginService.getUser().subscribe((e:any)=>{
-            console.log(e);
-          })
-          // console.log(b);
-          // this.router.navigate(['/dashboardemployer'], { relativeTo: this.route });
+          let statusUser;
+          if(this.user.status == false){
+            this.router.navigate(['/disable'], { relativeTo: this.route });
+          }
+          else{
+            this.router.navigate(['/dashboardemployer'], { relativeTo: this.route });
+  
+          }
         }
       }
       else{
