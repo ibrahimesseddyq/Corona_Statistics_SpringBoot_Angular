@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { CrudService } from 'src/app/services/crud.service';
 
-
 @Component({
   selector: 'app-dashboardemployer',
   templateUrl: './dashboardemployer.component.html',
   styleUrls: ['./dashboardemployer.component.css']
 })
+
 export class DashboardemployerComponent implements OnInit {
   multi: any[] = [
     {
@@ -99,10 +99,20 @@ dataGraph:any;
   constructor(private getInfo:CrudService,private reouter:Router) {
    }
 
+   dates : any[] = [
+  ];
   ngOnInit(): void {
     this.getInfo.getCases().subscribe(cases=>{
       this.cases = cases;
+
+      this.cases.forEach((value:any) => {
+        this.dates.push(value.date.datename);
+      });
       console.log(this.cases);
+      this.dates = [...new Set(this.dates)];
+      this.dates = this.dates.sort();
+      console.log(this.dates);
+      console.log();
     })
 
     this.getInfo.getCountry().subscribe(countries=>{
@@ -114,7 +124,7 @@ dataGraph:any;
         console.log(this.table)
 
       })
-      console.log(this.countries);
+      // console.log(this.countries);
       
     })
 
@@ -128,15 +138,15 @@ dataGraph:any;
   postData(data:any){
     this.dataGraph = data.form.value;
     console.log(this.dataGraph);
+    let endDate = data.form.value.endyear + "-" + data.form.value.endmonth;
+    console.log(endDate);
 
     this.getInfo.generGraph(this.dataGraph).subscribe(data=>{
       this.graphData = [];
       this.dataSelect = data;
       this.dataSelect.forEach((value: any) => {
-        // if(value.date.month%10 == 0){
-        //   value.date.month = 
-        // }
-        let data = { "name":'20'+ value.date.year + '-' + "{{value.date.month}}","series":[
+
+        let data = { "name":'20'+ value.date.year + '-' + `${value.date.month.toString()}`,"series":[
           {
             "name":"n case",
             "value":value.caseno
@@ -150,7 +160,7 @@ dataGraph:any;
         this.graphData.push(data)
         this.graphData = [...this.graphData];
         
-        console.log(this.graphData);
+        // console.log(this.graphData);
         const ngx = document.querySelector(".ngx");
         ngx?.classList.remove("d-none");
       });

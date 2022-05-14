@@ -17,7 +17,8 @@
                 <td>
                     <div class="user-info d-flex align-items-center">
                         <div class="user-info__img">
-                            <img class="me-3" src="../../../assets/img/avatar (1).svg" alt="User Img" width="55">
+                            <img *ngIf="user.sexe == 'F'" class="me-3" src="../../../assets/img/avatar (1).svg" alt="User Img" width="55">
+                            <img *ngIf="user.sexe == 'H'" class="me-3" src="../../../assets/img/avatar (2).svg" alt="User Img" width="55">
                         </div>
                         <div class="user-info__basic">
                             <h5 class="mb-0">{{user.fullname}}</h5>
